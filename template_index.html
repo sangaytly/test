@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PROJECT_TITLE}} - AgriTech Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">{{EMOJI_ICON}}</div>
+                    <div class="logo-text">
+                        <h1>{{PROJECT_TITLE}}</h1>
+                        <p>{{PROJECT_DESCRIPTION}}</p>
+                    </div>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot" id="statusDot"></div>
+                    <span id="statusText">Connecting...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Live Data Cards Section -->
+            <section class="live-data-section">
+                <h2 class="section-title">Live Environmental Data</h2>
+                <div class="data-cards">
+                    <!-- Temperature Card -->
+                    <div class="data-card temperature-card">
+                        <div class="card-header">
+                            <span class="card-icon">🌡️</span>
+                            <span class="card-title">Temperature</span>
+                        </div>
+                        <div class="card-value" id="tempValue">--</div>
+                        <div class="card-unit">°C</div>
+                        <div class="card-timestamp" id="tempTime">Last update: --</div>
+                    </div>
+
+                    <!-- Humidity Card -->
+                    <div class="data-card humidity-card">
+                        <div class="card-header">
+                            <span class="card-icon">💧</span>
+                            <span class="card-title">Humidity</span>
+                        </div>
+                        <div class="card-value" id="humValue">--</div>
+                        <div class="card-unit">%</div>
+                        <div class="card-timestamp" id="humTime">Last update: --</div>
+                    </div>
+
+                    <!-- Status Card -->
+                    <div class="data-card status-card">
+                        <div class="card-header">
+                            <span class="card-icon">📊</span>
+                            <span class="card-title">System Status</span>
+                        </div>
+                        <div class="status-info">
+                            <div class="status-item">
+                                <span class="status-label">Data Points:</span>
+                                <span class="status-value" id="dataCount">0</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Last Sync:</span>
+                                <span class="status-value" id="lastSync">--</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visualization Controls -->
+            <section class="controls-section">
+                <h2 class="section-title">Data Visualization</h2>
+                <div class="controls">
+                    <button class="control-btn active" data-range="60">Last Hour</button>
+                    <button class="control-btn" data-range="day">Last Day</button>
+                    <button class="control-btn" data-range="month">Last Month</button>
+                    <button class="control-btn" data-range="year">Last Year</button>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <section class="charts-section">
+                <div class="chart-container">
+                    <div class="chart-wrapper">
+                        <h3 class="chart-title">Temperature Trend</h3>
+                        <canvas id="temperatureChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-wrapper">
+                        <h3 class="chart-title">Humidity Trend</h3>
+                        <canvas id="humidityChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container full-width">
+                    <div class="chart-wrapper">
+                        <h3 class="chart-title">Combined Environmental Data</h3>
+                        <canvas id="combinedChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Table Section -->
+            <section class="table-section">
+                <h2 class="section-title">Recent Readings</h2>
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp ({{TIMEZONE}})</th>
+                                <th>Temperature (°C)</th>
+                                <th>Humidity (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataTableBody">
+                            <tr>
+                                <td colspan="3" class="no-data">No data available yet. Waiting for sensor readings...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Footer Info -->
+            <section class="info-section">
+                <div class="info-box">
+                    <h3>{{OPTIMAL_CONDITIONS_TITLE}}</h3>
+                    <div class="conditions-grid">
+                        <div class="condition-item">
+                            <span class="condition-label">{{CONDITION_1_LABEL}}:</span>
+                            <span class="condition-value">{{CONDITION_1_VALUE}}</span>
+                        </div>
+                        <div class="condition-item">
+                            <span class="condition-label">{{CONDITION_2_LABEL}}:</span>
+                            <span class="condition-value">{{CONDITION_2_VALUE}}</span>
+                        </div>
+                        <div class="condition-item">
+                            <span class="condition-label">{{CONDITION_3_LABEL}}:</span>
+                            <span class="condition-value">{{CONDITION_3_VALUE}}</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2025 {{PROJECT_TITLE}} | {{PROJECT_ORGANIZATION}}</p>
+            <p>Data auto-updates every minute | Timezone: {{TIMEZONE}}</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
